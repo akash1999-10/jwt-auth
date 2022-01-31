@@ -17,7 +17,6 @@ function App() {
         .then((data) => {
           if (data.data.success === false) {
             setErr("Login again");
-            // set message and return.
             resolve(false);
           } else {
             const { accessToken } = data.data;
@@ -41,7 +40,7 @@ function App() {
           if (data.data.success === false) {
             if (data.data.message === "User not authenticated") {
               setErr("Login again");
-              // set err message to login again.
+              
             } else if (data.data.message === "Access token expired") {
               const accessToken = await refresh(refreshToken);
               return await requestLogin(accessToken, refreshToken);
@@ -92,7 +91,7 @@ function App() {
     accessToken = await hasAccess(accessToken, refreshToken);
 
     if (!accessToken) {
-      // Set message saying login again.
+   
     } else {
       await requestLogin(accessToken, refreshToken);
     }
@@ -104,12 +103,12 @@ function App() {
         <div className="input-container">
           <label>Username </label>
           <input type="email" name="email" placeholder="Email address"  required />
-          {/* {renderErrorMessage("uname")} */}
+         
         </div>
         <div className="input-container">
           <label>Password </label>
           <input type="password" name="password" placeholder="Password" required />
-          {/* {renderErrorMessage("pass")} */}
+         
         </div>
         <div className="button-container">
           <input type="submit" />
@@ -120,18 +119,6 @@ function App() {
 
   return (
     <div className="app">
-      {/* <form action="" onChange={handleChange} onSubmit={handleSubmit}>
-                <input name="email" type="email" placeholder="Email address" />
-                <br />
-                <br />
-
-                <input name="password" type="password" placeholder="Password" />
-                <br />
-                <br />
-                <input type="submit" value="Login" />
-                <br />
-                <br />
-            </form> */}
       <div className="login-form">
         <div className="title">Sign In</div>
         {isSubmitted ? <div>User Succesfully logged in</div> : renderForm}
